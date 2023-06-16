@@ -1,0 +1,15 @@
+D:\c#\thief\bin\Debug\net7.0\thief.exe
+D:\c#\thief\bin\Debug\net7.0\thief.deps.json
+D:\c#\thief\bin\Debug\net7.0\thief.runtimeconfig.json
+D:\c#\thief\bin\Debug\net7.0\thief.dll
+D:\c#\thief\bin\Debug\net7.0\thief.pdb
+D:\c#\thief\obj\Debug\net7.0\thief.csproj.AssemblyReference.cache
+D:\c#\thief\obj\Debug\net7.0\thief.GeneratedMSBuildEditorConfig.editorconfig
+D:\c#\thief\obj\Debug\net7.0\thief.AssemblyInfoInputs.cache
+D:\c#\thief\obj\Debug\net7.0\thief.AssemblyInfo.cs
+D:\c#\thief\obj\Debug\net7.0\thief.csproj.CoreCompileInputs.cache
+D:\c#\thief\obj\Debug\net7.0\thief.dll
+D:\c#\thief\obj\Debug\net7.0\refint\thief.dll
+D:\c#\thief\obj\Debug\net7.0\thief.pdb
+D:\c#\thief\obj\Debug\net7.0\thief.genruntimeconfig.cache
+D:\c#\thief\obj\Debug\net7.0\ref\thief.dll
