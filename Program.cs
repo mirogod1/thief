@@ -1,70 +1,43 @@
 ﻿using thief;
 
-List<Item> data = new List<Item>{
+List<Item> Items = new List<Item>{
     new Item(1, 30, 10),
     new Item(2, 10, 20),
     new Item(3, 40, 30),
-    new Item(4, 20, 40),
+    new Item(4, 20, 40)
+
+
 };
 List<List<Item>> result = new List<List<Item>> ();
 
 const int maxWeight = 40;
-var resIndex = 0;
 
-void GenerateItemsSet(ref int resIndex, int index, int weight)
+List<List<Item>> allCombinations(int index, List<Item> tempset)
 {
-    if(index > data.Count-1)
+    var ListOfSets = new List<List<Item>>();
+    for(var i = index; i < Items.Count; i++ )
     {
-        resIndex++;
-        return;
+        var newTempset = new List<Item>();
+        newTempset.AddRange(tempset);
+        newTempset.Add(Items[i]);
+        ListOfSets.Add(newTempset);
+        ListOfSets.AddRange(allCombinations(i+1, newTempset));
     }
-    var setweight = weight;
-    for (int i = index; i < data.Count; i++)
-    {
-   // int i = index;
-        setweight = setweight + data[i].Weight;
-        if (setweight < maxWeight)
-        {
-            if(resIndex < result.Count)
-            {
-                result[resIndex].Add(data[i]);
-            }
-            else
-            {
-                result.Add(new List<Item>());
-                result[resIndex].Add(data[i]);
-            }
-            GenerateItemsSet(ref resIndex, i + 1, setweight);
-            
-        }
-        if(setweight == maxWeight)
-        {
-            if (resIndex < result.Count)
-            {
-                result[resIndex].Add(data[i]);
-            }
-            else
-            {
-                result.Add(new List<Item>());
-                result[resIndex].Add(data[i]);
-            }
-            resIndex++;
-            GenerateItemsSet(ref resIndex, i + 1, 0);
-        }
-        if (setweight > maxWeight)
-        {
-           
-            GenerateItemsSet(ref resIndex, i + 1, weight);
-            //return;
-        }
-    }
+
+    return ListOfSets;
 }
-GenerateItemsSet(ref resIndex,0,0);
-Console.WriteLine(result.Count);
-foreach (var itemList in result) {
-    Console.WriteLine("-------");
-    foreach (var item in itemList)
-    {
-        Console.WriteLine(item.Weight);
-    }    
+result = allCombinations(0, new List<Item>());
+var filteredResutls = result.Where(x => x.Sum(x => x.Weight) <= maxWeight).Select(result => result).ToList();
+
+var maxValue = filteredResutls.Max(x => x.Sum(y => y.Value));
+var maxResult = filteredResutls.Where(x => x.Sum(y => y.Value) == maxValue).Single();
+
+Console.WriteLine("----------------------------------------------------------");
+
+Console.Write($"highest profit is is {maxValue}. Weights are: ");
+foreach(var item in maxResult)
+{
+    Console.Write(item.Weight + "kg, ");
 }
+Console.WriteLine("");
+Console.WriteLine("----------------------------------------------------------");
